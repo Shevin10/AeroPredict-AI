@@ -218,3 +218,9 @@ __marimo__/
 .streamlit/secrets.toml
 # Trained models
 models/*.pkl
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
