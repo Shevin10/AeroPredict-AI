@@ -1,7 +1,7 @@
 import joblib
 import pandas as pd
 
-model = joblib.load("models/aircraft_rul_model.pkl")
+model = joblib.load("models/aircraft_rul_model_tune.pkl")
 
 sample = pd.read_csv("data/processed/sample_engine.csv")
 
