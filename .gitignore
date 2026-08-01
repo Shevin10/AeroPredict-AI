@@ -216,11 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-# Trained models
-models/*.pkl
-# Jupyter checkpoints
-.ipynb_checkpoints/
+# Ignore large/old model
+models/aircraft_rul_model.pkl
 
-# Python cache
+# Python
 __pycache__/
 *.pyc
+
+# Jupyter
+.ipynb_checkpoints/
