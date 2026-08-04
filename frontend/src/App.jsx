@@ -43,6 +43,77 @@ const sensors = [
   'sensor_20',
   'sensor_21'
 ]
+
+const demoPresets = {
+  low: {
+    cycle: 1,
+    op_setting_1: -0.0007,
+    op_setting_2: -0.0004,
+    sensor_2: 641.82,
+    sensor_3: 1589.70,
+    sensor_4: 1400.60,
+    sensor_6: 21.61,
+    sensor_7: 554.36,
+    sensor_8: 2388.06,
+    sensor_9: 9046.19,
+    sensor_11: 47.47,
+    sensor_12: 521.66,
+    sensor_13: 2388.02,
+    sensor_14: 8138.62,
+    sensor_15: 8.4195,
+    sensor_17: 392,
+    sensor_20: 39.06,
+    sensor_21: 23.419
+  },
+
+  medium: {
+    cycle: 145,
+    op_setting_1: -0.0004,
+    op_setting_2: -0.0001,
+    sensor_2: 642.95,
+    sensor_3: 1594.92,
+    sensor_4: 1409.63,
+    sensor_6: 21.61,
+    sensor_7: 553.03,
+    sensor_8: 2388.13,
+    sensor_9: 9046.92,
+    sensor_11: 47.54,
+    sensor_12: 521.13,
+    sensor_13: 2388.15,
+    sensor_14: 8130.91,
+    sensor_15: 8.4644,
+    sensor_17: 395,
+    sensor_20: 38.67,
+    sensor_21: 23.149
+  },
+
+  high: {
+    cycle: 163,
+    op_setting_1: 0.0003,
+    op_setting_2: -0.0004,
+    sensor_2: 642.85,
+    sensor_3: 1600.54,
+    sensor_4: 1421.09,
+    sensor_6: 21.61,
+    sensor_7: 552.41,
+    sensor_8: 2388.20,
+    sensor_9: 9049.24,
+    sensor_11: 47.89,
+    sensor_12: 520.30,
+    sensor_13: 2388.20,
+    sensor_14: 8124.06,
+    sensor_15: 8.5129,
+    sensor_17: 393,
+    sensor_20: 38.65,
+    sensor_21: 23.1419
+  }
+};
+
+const loadPreset = (risk) => {
+  setFormData(demoPresets[risk]);
+  setPrediction(null);
+};
+
 const handleChange = (event) => {
   const { name, value } = event.target
 
@@ -113,7 +184,7 @@ const runPrediction = async () => {
     </div>
 
     <div className="engine-info">
-        ...
+        
     </div>
 </div>
 </div>
@@ -165,143 +236,144 @@ const runPrediction = async () => {
             <p className="muted">
               Configure flight and sensor parameters for analysis.
             </p>
-            <div className="input-grid">
-<div className="engine-input-layout">
-<div className="flight-section">
+            <div className="telemetry-layout">
 
-  <div className="section-title">
-    ✈ Flight Parameters
-  </div>
+  {/* LEFT SIDE */}
+  <div className="engine-input-layout">
 
-  <div className="input-grid">
+    {/* FLIGHT PARAMETERS */}
+    <div className="flight-section">
 
-    <div className="input-group">
-      <label>Cycle</label>
-      <input
-        type="number"
-        name="cycle"
-        value={formData.cycle}
-        onChange={handleChange}
-      />
-    </div>
+      <div className="section-title">
+        ✈ Flight Parameters
+      </div>
 
-    <div className="input-group">
-      <label>OP1</label>
-      <input
-        type="number"
-        step="any"
-        name="op_setting_1"
-        value={formData.op_setting_1}
-        onChange={handleChange}
-      />
-    </div>
+      <div className="input-grid">
 
-    <div className="input-group">
-      <label>OP2</label>
-      <input
-        type="number"
-        step="any"
-        name="op_setting_2"
-        value={formData.op_setting_2}
-        onChange={handleChange}
-      />
-    </div>
+        <div className="input-group">
+          <label>Cycle</label>
+          <input
+            type="number"
+            name="cycle"
+            value={formData.cycle}
+            onChange={handleChange}
+          />
+        </div>
 
-  </div>
+        <div className="input-group">
+          <label>OP1</label>
+          <input
+            type="number"
+            step="any"
+            name="op_setting_1"
+            value={formData.op_setting_1}
+            onChange={handleChange}
+          />
+        </div>
 
-</div>
-
-<div className="sensor-section">
-
-  <div className="section-title">
-    📡 Input Parameters
-  </div>
-
-  <div className="sensor-grid">
-
-    {sensors.map((sensor) => (
-      <div className="sensor-card" key={sensor}>
-
-        <label>{sensor.replace("sensor_", "S")}</label>
-
-        <input
-          type="number"
-          step="any"
-          name={sensor}
-          value={formData[sensor]}
-          onChange={handleChange}
-        />
+        <div className="input-group">
+          <label>OP2</label>
+          <input
+            type="number"
+            step="any"
+            name="op_setting_2"
+            value={formData.op_setting_2}
+            onChange={handleChange}
+          />
+        </div>
 
       </div>
-    ))}
+    </div>
 
-  </div>
 
-</div>
-</div>
+    {/* SENSOR PARAMETERS */}
+    <div className="sensor-section">
 
-</div>
+      <div className="section-title">
+        📡 Input Parameters
+      </div>
 
-            <button onClick={runPrediction}>
-              🚀 RUN ENGINE DIAGNOSTIC
-            </button>
+      <div className="sensor-grid">
+
+        {sensors.map((sensor) => (
+          <div className="sensor-card" key={sensor}>
+
+            <label>
+              {sensor.replace("sensor_", "S")}
+            </label>
+
+            <input
+              type="number"
+              step="any"
+              name={sensor}
+              value={formData[sensor]}
+              onChange={handleChange}
+            />
+
           </div>
+        ))}
 
-
-          <div className="panel">
-  <div className="panel-label">MAINTENANCE ADVISOR</div>
-
-  <h2>Recommended Action</h2>
-
-  <div
-    className={`status ${
-      prediction?.risk?.toLowerCase() || "low"
-    }`}
-  >
-    {prediction ? prediction.risk : "READY"}
-  </div>
-
-  <div className="advisor-box">
-
-    <p>
-      <strong>Recommendation</strong>
-    </p>
-
-    <p>
-      {prediction
-        ? prediction.recommendation
-        : "Run an engine diagnostic to receive recommendations."}
-    </p>
-
-    <hr />
-
-    <p>
-      <strong>Estimated Remaining Life</strong>
-    </p>
-
-    <h3>
-      {prediction
-        ? `${Math.round(prediction.predicted_rul)} cycles`
-        : "--"}
-    </h3>
+      </div>
+    </div>
 
   </div>
-</div>
-
-        </section>
 
 
-        <section className="advisory-panel">
-          <div className="panel-label">MAINTENANCE ADVISORY</div>
+  {/* RIGHT SIDE — DEMO SCENARIOS */}
+  <div className="preset-section">
 
-          <p>
-            No engine diagnostic has been performed.
-          </p>
-        </section>
+    <span className="preset-label">
+      DEMO SCENARIOS
+    </span>
 
-      </main>
+    <div className="preset-buttons">
+
+      <button
+        type="button"
+        className="preset-btn low"
+        onClick={() => loadPreset("low")}
+      >
+        HEALTHY
+      </button>
+
+      <button
+        type="button"
+        className="preset-btn medium"
+        onClick={() => loadPreset("medium")}
+      >
+        WARNING
+      </button>
+
+      <button
+        type="button"
+        className="preset-btn high"
+        onClick={() => loadPreset("high")}
+      >
+        CRITICAL
+      </button>
 
     </div>
+
+  </div>
+
+</div>
+
+
+{/* DIAGNOSTIC BUTTON */}
+<button
+  className="diagnostic-button"
+  onClick={runPrediction}
+>
+  🚀 RUN ENGINE DIAGNOSTIC
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
   )
 }
 

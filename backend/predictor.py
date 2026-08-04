@@ -6,9 +6,9 @@ model = joblib.load("models/aircraft_rul_model_tune.pkl")
 
 
 def get_risk(rul):
-    if rul < 80:
+    if rul < 40:
         return "HIGH", "Immediate inspection required"
-    elif rul < 120:
+    elif rul < 100:
         return "MEDIUM", "Schedule maintenance"
     else:
         return "LOW", "Normal operation"

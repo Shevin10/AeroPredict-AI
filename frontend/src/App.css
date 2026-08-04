@@ -88,7 +88,6 @@ body {
 
 .panel-label {
   color: #58c8f5;
-
   font-size: 10px;
   letter-spacing: 2px;
   font-weight: bold;
@@ -249,9 +248,9 @@ body {
 
 .bottom-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-
+  grid-template-columns: 1fr;
   gap: 20px;
+  width: 100%;
   margin-top: 20px;
 }
 
@@ -299,7 +298,14 @@ letter-spacing:4px;
 
   box-shadow: 0 0 18px rgba(40, 180, 255, 0.15);
 }
+.diagnostic-button:active {
+  transform: translateY(0px) scale(0.99);
 
+  background: rgba(40, 170, 230, 0.3);
+
+  box-shadow:
+    0 0 5px rgba(71, 200, 255, 0.5);
+}
 .rul-display {
   margin-top: 35px;
 
@@ -360,9 +366,12 @@ letter-spacing:4px;
 .input-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-
-  margin-top: 25px;
+  gap: 25px;
+  width: 100%;
+}
+.input-grid input {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .input-group {
@@ -416,9 +425,16 @@ letter-spacing:4px;
 
 .sensor-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px 25px;
+  width: 100%;
 }
+
+.sensor-grid input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .hero-panel{
     display:grid;
     grid-template-columns:2fr 1fr;
@@ -532,7 +548,7 @@ letter-spacing:4px;
     text-transform:uppercase;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 800px) {
   .bottom-grid {
     grid-template-columns: 1fr;
   }
@@ -617,4 +633,103 @@ letter-spacing:4px;
     border:none;
     border-top:1px solid rgba(255,255,255,.08);
     margin:16px 0;
+}
+.preset-section {
+  margin: 22px 0;
+}
+
+.preset-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #6f93ad;
+  margin-bottom: 10px;
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.preset-btn {
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.preset-btn.low {
+  border: 1px solid #20e68a;
+  color: #20e68a;
+}
+
+.preset-btn.medium {
+  border: 1px solid #ffd43b;
+  color: #ffd43b;
+}
+
+.preset-btn.high {
+  border: 1px solid #ff4d5a;
+  color: #ff4d5a;
+}
+
+.preset-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.3);
+}
+.engine-input-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  width: 100%;
+}
+/* .engine-input-layout input {
+  width: 100%;
+  box-sizing: border-box;
+} */
+
+
+.telemetry-layout {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 50px;
+  width: 100%;
+  align-items: start;
+}
+
+
+
+
+
+
+
+
+/* Sensors */
+
+
+.sensor-card {
+  min-width: 0;
+}
+
+
+.sensor-card input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Demo buttons */
+
+.preset-section {
+  width: 100%;
+}
+
+
+.preset-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
 }
